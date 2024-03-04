@@ -1,5 +1,7 @@
 #include "kc_window.hpp"
 #include <GLFW/glfw3.h>
+#include <stdexcept>
+#include <vulkan/vulkan_core.h>
 
 namespace kc_engine {
 
@@ -18,5 +20,11 @@ void KcWindow::initWindow() {
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
+}
+
+void KcWindow::createWindowSurface(VkInstance instance, VkSurfaceKHR *surface) {
+    if (glfwCreateWindowSurface(instance, window, nullptr, surface) != VK_SUCCESS) {
+        throw std::runtime_error("failed to create windows surface");
+    }
 }
 }
