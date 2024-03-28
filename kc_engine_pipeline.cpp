@@ -43,7 +43,12 @@ KcEnginePipeline::KcEnginePipeline(
         std::cout << "Fragment Shader Code Size: " << fragCode.size() << '\n';
     }
 
-    void KcEnginePipeline::createShaderModule(const std::vector<char>& code, VkShaderModule* shaderModule) {
+    void KcEnginePipeline::createShaderModule
+    (
+        const std::vector<char>& code,
+        VkShaderModule* shaderModule
+    ) 
+    {
         VkShaderModuleCreateInfo createInfo{};
         createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
         createInfo.codeSize = code.size();
